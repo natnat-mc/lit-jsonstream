@@ -1,7 +1,8 @@
 ArrayOutputStream=require './ArrayOutputStream'
+ObjectDecodeStream=require './ObjectDecodeStream'
 Builder=require './Builder'
 
 {
-	:ArrayOutputStream,
+	:ArrayOutputStream, :ObjectDecodeStream
 	:Builder
 }

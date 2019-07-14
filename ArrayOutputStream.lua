@@ -1,6 +1,7 @@
 local Transform
 Transform = require('Stream').Transform
-local JSON = require('JSON')
+local stringify
+stringify = require('JSON').stringify
 local ArrayOutputStream = Transform:extend()
 ArrayOutputStream.initialize = function(self)
   Transform.initialize(self, {
@@ -10,10 +11,10 @@ ArrayOutputStream.initialize = function(self)
 end
 ArrayOutputStream._transform = function(self, object, cb)
   if self.first then
-    self:push('[' .. JSON.stringify(object))
+    self:push('[' .. stringify(object))
     self.first = false
   else
-    self:push(',' .. JSON.stringify(object))
+    self:push(',' .. stringify(object))
   end
   return cb()
 end

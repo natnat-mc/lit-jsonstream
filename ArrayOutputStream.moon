@@ -1,5 +1,5 @@
 import Transform from require 'Stream'
-JSON=require 'JSON'
+import stringify from require 'JSON'
 
 ArrayOutputStream=Transform\extend!
 ArrayOutputStream.initialize=() =>
@@ -8,10 +8,10 @@ ArrayOutputStream.initialize=() =>
 
 ArrayOutputStream._transform=(object, cb) =>
 	if @first
-		@\push '['..JSON.stringify(object)
+		@\push '['..stringify(object)
 		@first=false
 	else
-		@\push ','..JSON.stringify(object)
+		@\push ','..stringify(object)
 	cb!
 
 ArrayOutputStream._end=(...) =>
